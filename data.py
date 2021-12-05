@@ -33,6 +33,6 @@ class PowerLiftData:
 
 runner = PowerLiftData()
 runner.load()
-runner.printNames('Joe')
+runner.printNames('Bryan')
 #runner.ages()
 #runner.print()
