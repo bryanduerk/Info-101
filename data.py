@@ -21,7 +21,8 @@ class PowerLiftData:
         
         print('\n\nAge Groupings by sorting the data and dividing into groups')
         print(ageStats)
-        
+    
+    #Finds the overall average squat, bench, and deadlift for each attempt (not separated by age class)
     def SBDAverage(self):
         print("\n\nMean Squat for Each Attempt")
         # get the location of the 1st attempt, next 2 attempts are the next 2 columns
@@ -31,6 +32,7 @@ class PowerLiftData:
         print("\n\nMean Deadlift for Each Attempt")
         self.average(self.data.to_numpy(), self.data.columns.get_loc('Deadlift1Kg'))
     
+    #Finds the average squat, bench, and deadlift by age class for each attempt
     def attemptAveragesByAgeClass(self):
         ageClasses = self.data.groupby(['AgeClass'])
         for ageClassName in ageClasses.groups.keys():
@@ -60,7 +62,7 @@ class PowerLiftData:
         mean = [0,0,0]
         for row in dataArray:
             for i in range(3):
-                # Need to make sure the value isn't blank and greater than 0
+                # Need to make sure the value isn't blank and greater than 0, negative values which are failed attempts are removed
                 if (np.isnan(row[columnNum + i]) == False and row[columnNum + i] > 0): 
                     count[i] += 1
                     sum[i] += row[columnNum + i]
